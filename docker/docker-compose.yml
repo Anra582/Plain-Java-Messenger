@@ -1,0 +1,16 @@
+version: '2.1'
+services:
+  redis-server:
+    container_name: redis_pjm
+    image: bitnami/redis:6.0.16
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes #for develop only
+    networks:
+      backend:
+        aliases:
+          - redis
+networks:
+  backend:
+    driver: bridge

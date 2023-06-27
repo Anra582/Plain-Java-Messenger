@@ -1,0 +1,1 @@
+Unix-like terminal messenger. Pure Java without any frameworks
