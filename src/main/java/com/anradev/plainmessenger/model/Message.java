@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 /**
  * @author Aleksei Zhvakin
  */
-public record Message(String sender, String recipient, String message) {
+public record Message(
+        String sender,
+        String recipient,
+        String message
+) {
 
 }

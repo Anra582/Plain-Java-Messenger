@@ -7,13 +7,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -39,7 +36,7 @@ public class StoryExportService {
         try {
             final String valueAsString = objectMapper.writeValueAsString(messages);
 
-            Path path = Paths.get(fileName);
+            Path path = Path.of(fileName);
             try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
                 writer.write(valueAsString);
                 writer.flush();

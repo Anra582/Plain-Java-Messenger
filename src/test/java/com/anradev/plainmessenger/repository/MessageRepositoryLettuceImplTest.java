@@ -1,5 +1,6 @@
 package com.anradev.plainmessenger.repository;
 
+import com.anradev.plainmessenger.config.RedisConnectionHolder;
 import com.anradev.plainmessenger.model.Message;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class MessageRepositoryLettuceImplTest {
 
-    MessageRepository repository = new MessageRepositoryLettuceImpl("localhost", 6379);
+    MessageRepository repository = new MessageRepositoryLettuceImpl(RedisConnectionHolder.getConnection(),
+            RedisConnectionHolder.getPubSubConnection());
 
     @BeforeEach
     void setUp() {
@@ -34,6 +36,6 @@ class MessageRepositoryLettuceImplTest {
 
     @Test
     void save() {
-        Assertions.assertTrue(repository.save("recipientsender", new Message("sender", "recipient", "average message")));
+        Assertions.assertNotNull(repository.save("recipientsender", new Message("sender", "recipient", "average message")));
     }
 }

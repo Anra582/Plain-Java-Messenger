@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  */
 public class MessageServiceImpl implements MessageService {
 
-    MessageRepository messageRepository;
+    private MessageRepository messageRepository;
 
     public MessageServiceImpl(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
@@ -27,7 +27,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public boolean sendMessage(Message message) {
+    public String sendMessage(Message message) {
         String key = RepoKeyBuilder.build(message.sender(), message.recipient());
         return messageRepository.save(key, message);
     }

@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface MessageService {
     List<Message> getAllHistory(String sender, String recipient);
-    boolean sendMessage(Message message);
+    String sendMessage(Message message);
 }
