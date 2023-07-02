@@ -8,6 +8,7 @@ import com.anradev.plainmessenger.repository.MessageRepositoryLettuceImpl;
 import com.anradev.plainmessenger.repository.UserRepository;
 import com.anradev.plainmessenger.repository.UserRepositoryLettuceImpl;
 import com.anradev.plainmessenger.service.*;
+import com.anradev.plainmessenger.util.ObjectMapperFromStreamMessage;
 import com.anradev.plainmessenger.util.RepoKeyBuilder;
 import io.lettuce.core.XReadArgs;
 import io.lettuce.core.api.async.RedisAsyncCommands;
@@ -18,7 +19,9 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -69,47 +72,29 @@ public class Main {
                 boolean isAlreadyExist = users.stream()
                         .anyMatch(user -> user.name().equals(userName));
 
+                RedisCommands<String, String> redisSyncCommands = RedisConnectionHolder.getConnection().sync();
+
                 if(!isAlreadyExist) {
                     userService.save(new User(userName));
 
-                    RedisCommands<String, String> redisSyncCommands = RedisConnectionHolder.getConnection().sync();
+                    redisSyncCommands = RedisConnectionHolder.getConnection().sync();
                     redisSyncCommands.xgroupCreate(XReadArgs.StreamOffset.from("users", "0-0"), userName);
-
-//                    users.stream() //тут короче выходит так что срабатывает эта вещь только при создании нового
-//                            .filter(user -> !user.name().equals(loginStr))
-//                            .forEach(otherUser -> {
-//                                messageRepository.subscribe(loginStr, otherUser.name(), message -> {
-//                                    Message mappedMessage = MessageRepositoryLettuceImpl.mapMessageFromStreamMessage(message);
-//                                    System.out.println(mappedMessage.sender() + ": " + mappedMessage.message());
-//                                    RedisAsyncCommands<String, String> aSyncCommands = messageRepository.getASyncCommands();
-//                                    aSyncCommands.xack(RepoKeyBuilder.build(loginStr, otherUser.name()), loginStr, message.getId());
-//                                });
-//                            });
-                    /*
-                    тут короче выходит так что срабатывает эта вещь только при создании нового пользователя
-                    а надо сделать так: каждый пользователь привязывает себя как группу и консюмер к стриму пользователей.
-                    и исходя из полученного списка он формирует ключ к стримам сообщений с каждым из пользователей(при существовании
-                    такого ключа просто игнорируется) и вносит себя в группу и консюмера к этому ключу.
-                    Если добавляется новый пользователь, то будучи подписанным на это событие также
-                    происходит очередная итерация алгоритма. По сути при регистрации нового пользователя надо просто добавлять его
-                    в "таблицу" юзеров, а подписка остальных должна сработать автоматом. Но это не точно. Обдумай это завтра получше
-                     */
-
                 }
 
-                userRepository.subscribe(userName, streamMessage -> {
-                    User mappedUser = UserRepositoryLettuceImpl.mapUserFromStreamMessage(streamMessage);
+                redisSyncCommands.xgroupSetid(XReadArgs.StreamOffset.from("users", "0-0"), userName);
+
+                userRepository.subscribe(userName, userStreamMessage -> {
+                    User mappedUser = ObjectMapperFromStreamMessage.map(userStreamMessage, "value", User.class);
 
                     if(mappedUser != null) {
                         if(!mappedUser.name().equals(userName)) {
-                            RedisCommands<String, String> sync = RedisConnectionHolder.getConnection().sync();
-                            String key = RepoKeyBuilder.build(userName, mappedUser.name());
+                            messageRepository.subscribe(userName, mappedUser.name(), messageStreamMessage -> {
+                                Message message = ObjectMapperFromStreamMessage.map(messageStreamMessage, "value", Message.class);
+                                System.out.println(message.sender() + ": " + message.message());
 
-                            messageRepository.subscribe(userName, mappedUser.name(), message -> {
-                                Message mappedMessage = MessageRepositoryLettuceImpl.mapMessageFromStreamMessage(message);
-                                System.out.println(mappedMessage.sender() + ": " + mappedMessage.message());
-                                RedisAsyncCommands<String, String> aSyncCommands = messageRepository.getASyncCommands();
-                                aSyncCommands.xack(RepoKeyBuilder.build(userName, mappedUser.name()), userName, message.getId());
+                                RedisAsyncCommands<String, String> aSyncCommands = RedisConnectionHolder.getConnection().async();
+                                String key = RepoKeyBuilder.build(userName, mappedUser.name());
+                                aSyncCommands.xack(key, userName, messageStreamMessage.getId());
                             });
                         }
                     }
@@ -123,15 +108,6 @@ public class Main {
                         " It can also contain dots, dashes, and underscores.");
             }
         }
-
-        //Subscribe section. Remake it to subscribe on adding new users
-//
-//        messageRepository.subscribe(userName, "recipient", message -> {
-//            Message mappedMessage = MessageRepositoryLettuceImpl.mapMessageFromStreamMessage(message);
-//            System.out.println(mappedMessage.sender() + ": " + mappedMessage.message());
-//            RedisAsyncCommands<String, String> aSyncCommands = messageRepository.getASyncCommands();
-//            aSyncCommands.xack(RepoKeyBuilder.build(userName, "recipient"), userName, message.getId());
-//        });
 
 
         //Common commands section

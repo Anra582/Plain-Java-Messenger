@@ -1,8 +1,7 @@
 package com.anradev.plainmessenger.repository;
 
-import com.anradev.plainmessenger.model.Message;
 import com.anradev.plainmessenger.model.User;
-import com.anradev.plainmessenger.util.RepoKeyBuilder;
+import com.anradev.plainmessenger.util.ObjectMapperFromStreamMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.StreamMessage;
@@ -11,7 +10,10 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -52,7 +54,7 @@ public class UserRepositoryLettuceImpl implements UserRepository {
     public List<User> findAll() {
         List<StreamMessage<String, String>> streamMessages = syncCommands.xread(XReadArgs.StreamOffset.from("users", "0"));
         return streamMessages.stream()
-                .map(UserRepositoryLettuceImpl::mapUserFromStreamMessage)
+                .map(streamMessage -> ObjectMapperFromStreamMessage.map(streamMessage, "value",User.class))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
@@ -66,19 +68,5 @@ public class UserRepositoryLettuceImpl implements UserRepository {
                         XReadArgs.StreamOffset.lastConsumed("users"))
                 .repeat()
                 .subscribe(consumer);
-    }
-
-    public static User mapUserFromStreamMessage(StreamMessage<String, String> streamMessage) { //Move to util class
-        Map<String, String> body = streamMessage.getBody();
-        String value = body.get("value");
-        if (value != null) {
-            try {
-                return objectMapper.readValue(value, User.class);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
     }
 }

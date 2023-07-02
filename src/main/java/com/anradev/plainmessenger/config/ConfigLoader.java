@@ -18,9 +18,6 @@ public final class ConfigLoader {
             properties.load(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (NullPointerException e) {
-            System.out.println("Cannot load properties from " + configFileName + ". File not found!");
-            throw new RuntimeException(e);
         }
     }
 

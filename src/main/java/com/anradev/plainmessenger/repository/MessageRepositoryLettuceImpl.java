@@ -1,16 +1,21 @@
 package com.anradev.plainmessenger.repository;
 
 import com.anradev.plainmessenger.model.Message;
+import com.anradev.plainmessenger.util.ObjectMapperFromStreamMessage;
 import com.anradev.plainmessenger.util.RepoKeyBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.lettuce.core.*;
+import io.lettuce.core.StreamMessage;
+import io.lettuce.core.XGroupCreateArgs;
+import io.lettuce.core.XReadArgs;
 import io.lettuce.core.api.StatefulRedisConnection;
-import io.lettuce.core.api.async.RedisAsyncCommands;
 import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -29,10 +34,6 @@ public class MessageRepositoryLettuceImpl implements MessageRepository {
         this.connection = connection;
         this.pubSubConnection = pubSubConnection;
         this.syncCommands = connection.sync();
-    };
-
-    public RedisAsyncCommands<String, String> getASyncCommands() {
-        return connection.async();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,7 +41,7 @@ public class MessageRepositoryLettuceImpl implements MessageRepository {
     public List<Message> findAllByKey(String key) {
         List<StreamMessage<String, String>> streamMessages = syncCommands.xread(XReadArgs.StreamOffset.from(key, "0"));
         return streamMessages.stream()
-                .map(MessageRepositoryLettuceImpl::mapMessageFromStreamMessage)
+                .map(streamMessage -> ObjectMapperFromStreamMessage.map(streamMessage, "value", Message.class))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
@@ -75,19 +76,5 @@ public class MessageRepositoryLettuceImpl implements MessageRepository {
                         XReadArgs.StreamOffset.lastConsumed(key))
                 .repeat()
                 .subscribe(consumer);
-    }
-
-    public static Message mapMessageFromStreamMessage(StreamMessage<String, String> streamMessage) {
-        Map<String, String> body = streamMessage.getBody();
-        String value = body.get("value");
-        if (value != null) {
-            try {
-                return objectMapper.readValue(value, Message.class);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
     }
 }
