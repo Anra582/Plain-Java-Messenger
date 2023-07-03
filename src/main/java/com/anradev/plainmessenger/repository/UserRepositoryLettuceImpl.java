@@ -18,9 +18,11 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
+ * UserRepositoryLettuceImpl provides functionality for saving and reading {@link com.anradev.plainmessenger.model.User}
+ * from Redis via <a href="https://lettuce.io/">Lettuce</a>. It also allows you to subscribe to an event about adding new Users to Redis stream.
  * @author Aleksei Zhvakin
  */
-public class UserRepositoryLettuceImpl implements UserRepository {
+public class UserRepositoryLettuceImpl implements UserRepository<StreamMessage<String, String>> {
 
     StatefulRedisConnection<String, String> connection;
     StatefulRedisPubSubConnection<String, String> pubSubConnection;
@@ -40,7 +42,7 @@ public class UserRepositoryLettuceImpl implements UserRepository {
         try {
             userAsString = objectMapper.writeValueAsString(user);
         } catch (JsonProcessingException e) {
-            System.out.println("Cannot serialize message to string");
+            System.out.println("Cannot serialize value to string");
             return null;
         }
         Map<String, String> userBody = new HashMap<>();

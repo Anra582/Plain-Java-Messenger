@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
+ * ObjectMapperFromStreamMessage allows you to map {@link io.lettuce.core.StreamMessage} into needed class object.
  * @author Aleksei Zhvakin
  */
 public class ObjectMapperFromStreamMessage<T extends Serializable> {

@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
+ * This class loads properties from existing file "config.properties" and makes it possible to get them as String by its name
  * @author Aleksei Zhvakin
  */
 public final class ConfigLoader {

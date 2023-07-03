@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
+ * StoryExportService provides exporting the chatting history between two users in JSON-format
  * @author Aleksei Zhvakin
  */
 public class StoryExportService {

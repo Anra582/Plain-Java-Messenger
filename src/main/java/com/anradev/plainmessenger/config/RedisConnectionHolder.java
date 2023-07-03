@@ -6,6 +6,7 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 
 /**
+ * This class contains connections to Redis server
  * @author Aleksei Zhvakin
  */
 public class RedisConnectionHolder {

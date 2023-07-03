@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ * RepoKeyBuilder managed for creating a key from two users.
  * @author Aleksei Zhvakin
  */
 public class RepoKeyBuilder {

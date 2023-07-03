@@ -20,9 +20,11 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
+ * MessageRepositoryLettuceImpl provides functionality for saving and reading {@link com.anradev.plainmessenger.model.Message}
+ * from Redis via <a href="https://lettuce.io/">Lettuce</a>. It also allows you to subscribe to an event about adding new Messages to Redis stream.
  * @author Aleksei Zhvakin
  */
-public class MessageRepositoryLettuceImpl implements MessageRepository {
+public class MessageRepositoryLettuceImpl implements MessageRepository<StreamMessage<String, String>> {
 
     private final StatefulRedisConnection<String, String> connection;
     private final StatefulRedisPubSubConnection<String, String> pubSubConnection;
