@@ -46,7 +46,7 @@ public class Main {
                         RedisConnectionHolder.getPubSubConnection());
         userService = new UserServiceImpl(userRepository);
 
-        exportService = new StoryExportService(messageRepository);
+        exportService = new StoryExportService(messageService);
 
 
 

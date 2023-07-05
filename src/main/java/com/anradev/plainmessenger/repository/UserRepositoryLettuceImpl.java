@@ -24,9 +24,10 @@ import java.util.stream.Collectors;
  */
 public class UserRepositoryLettuceImpl implements UserRepository<StreamMessage<String, String>> {
 
-    StatefulRedisConnection<String, String> connection;
-    StatefulRedisPubSubConnection<String, String> pubSubConnection;
-    RedisCommands<String, String> syncCommands;
+    private final String streamKey = "users";
+    private final StatefulRedisConnection<String, String> connection;
+    private final StatefulRedisPubSubConnection<String, String> pubSubConnection;
+    private final RedisCommands<String, String> syncCommands;
     static ObjectMapper objectMapper = new ObjectMapper();
 
     public UserRepositoryLettuceImpl(StatefulRedisConnection<String, String> connection,
@@ -48,13 +49,13 @@ public class UserRepositoryLettuceImpl implements UserRepository<StreamMessage<S
         Map<String, String> userBody = new HashMap<>();
         userBody.put("value", userAsString);
 
-        return syncCommands.xadd("users", userBody);
+        return syncCommands.xadd(streamKey, userBody);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<User> findAll() {
-        List<StreamMessage<String, String>> streamMessages = syncCommands.xread(XReadArgs.StreamOffset.from("users", "0"));
+        List<StreamMessage<String, String>> streamMessages = syncCommands.xread(XReadArgs.StreamOffset.from(streamKey, "0"));
         return streamMessages.stream()
                 .map(streamMessage -> ObjectMapperFromStreamMessage.map(streamMessage, "value",User.class))
                 .filter(Objects::nonNull)
@@ -67,7 +68,7 @@ public class UserRepositoryLettuceImpl implements UserRepository<StreamMessage<S
 
         pubSubConnection.reactive()
                 .xreadgroup(io.lettuce.core.Consumer.from(user, user),
-                        XReadArgs.StreamOffset.lastConsumed("users"))
+                        XReadArgs.StreamOffset.lastConsumed(streamKey))
                 .repeat()
                 .subscribe(consumer);
     }

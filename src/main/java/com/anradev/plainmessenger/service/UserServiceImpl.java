@@ -9,7 +9,6 @@ import java.util.function.Consumer;
 
 /**
  * UserServiceImpl is a service-layer wrapper over the {@link com.anradev.plainmessenger.repository.UserRepository}.
- * It is also responsible for generating the correct key as the id for repository.
  * @see com.anradev.plainmessenger.util.RepoKeyBuilder
  * @author Aleksei Zhvakin
  */

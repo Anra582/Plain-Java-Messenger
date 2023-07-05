@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d40f82bc-6905-48bd-a8f3-dced802952ab" name="Changes" comment="Generic interfaces. Refactor">
+    <list default="true" id="d40f82bc-6905-48bd-a8f3-dced802952ab" name="Changes" comment="README.MD update. Updated build.gradle for run app from gradle command">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/anradev/plainmessenger/repository/MessageRepositoryLettuceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/anradev/plainmessenger/repository/UserRepositoryLettuceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/anradev/plainmessenger/util/ObjectMapperFromStreamMessageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/config/ConfigLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/config/ConfigLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/config/RedisConnectionHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/config/RedisConnectionHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/model/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/MessageRepositoryLettuceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/MessageRepositoryLettuceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/UserRepositoryLettuceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/repository/UserRepositoryLettuceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/MessageServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/StoryExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/StoryExportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/util/ObjectMapperFromStreamMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/util/ObjectMapperFromStreamMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/util/RepoKeyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anradev/plainmessenger/util/RepoKeyBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/anradev/plainmessenger/repository/MessageRepositoryLettuceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/anradev/plainmessenger/repository/MessageRepositoryLettuceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +48,19 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Plain-Java-Messenger" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Plain-Java-Messenger" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Plain-Java-Messenger" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -67,10 +72,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Record" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -89,24 +94,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/admin/IdeaProjects/anra-dev/Plain-Java-Messenger/src/test/java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;duplicates.index&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "last_directory_selection": "C:/Users/admin/IdeaProjects/anra-dev/Plain-Java-Messenger/src/test/java/com/anradev/plainmessenger",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "duplicates.index"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -119,10 +124,11 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.anradev.plainmessenger.util" />
       <recent name="com.anradev.plainmessenger.repository" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.Plain-Java-Messenger [run]">
     <configuration name="Main" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.anradev.plainmessenger.Main" />
       <module name="Plain-Java-Messenger.main" />
@@ -136,7 +142,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MessageRepositoryLettuceImplTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ObjectMapperFromStreamMessageTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -149,7 +155,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.anradev.plainmessenger.repository.MessageRepositoryLettuceImplTest&quot;" />
+            <option value="&quot;com.anradev.plainmessenger.util.ObjectMapperFromStreamMessageTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -159,7 +165,49 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MessageRepositoryLettuceImplTest.findAllByKey" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Plain-Java-Messenger [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Plain-Java-Messenger [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserRepositoryLettuceImplTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -172,72 +220,30 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.anradev.plainmessenger.repository.MessageRepositoryLettuceImplTest.findAllByKey&quot;" />
+            <option value="&quot;com.anradev.plainmessenger.repository.UserRepositoryLettuceImplTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Plain-Java-Messenger [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Plain-Java-Messenger [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.MessageRepositoryLettuceImplTest" />
-      <item itemvalue="Gradle.MessageRepositoryLettuceImplTest.findAllByKey" />
-      <item itemvalue="Gradle.Plain-Java-Messenger [build]" />
-      <item itemvalue="Gradle.Plain-Java-Messenger [jar]" />
+      <item itemvalue="Gradle.Plain-Java-Messenger [run]" />
+      <item itemvalue="Gradle.ObjectMapperFromStreamMessageTest" />
+      <item itemvalue="Gradle.Plain-Java-Messenger [test]" />
+      <item itemvalue="Gradle.UserRepositoryLettuceImplTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Plain-Java-Messenger [run]" />
+        <item itemvalue="Gradle.Plain-Java-Messenger [test]" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.Plain-Java-Messenger [build]" />
-        <item itemvalue="Gradle.Plain-Java-Messenger [jar]" />
-        <item itemvalue="Gradle.MessageRepositoryLettuceImplTest" />
-        <item itemvalue="Gradle.MessageRepositoryLettuceImplTest.findAllByKey" />
+        <item itemvalue="Gradle.ObjectMapperFromStreamMessageTest" />
+        <item itemvalue="Gradle.UserRepositoryLettuceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -262,7 +268,10 @@
       <workItem from="1688220603663" duration="7352000" />
       <workItem from="1688281052992" duration="8977000" />
       <workItem from="1688301647289" duration="13005000" />
-      <workItem from="1688343110950" duration="12136000" />
+      <workItem from="1688343110950" duration="19013000" />
+      <workItem from="1688552089937" duration="2036000" />
+      <workItem from="1688554140396" duration="8068000" />
+      <workItem from="1688564700009" duration="5465000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1687686790003</created>
@@ -292,7 +301,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688315389648</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Generic interfaces. Most necessary doc comments">
+      <created>1688359292146</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688359292146</updated>
+    </task>
+    <task id="LOCAL-00006" summary="README.MD update. Updated build.gradle for run app from gradle command">
+      <created>1688365267320</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1688365267320</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,7 +335,9 @@
     <MESSAGE value="advanced features as real time chatting, users list, exporting chat history" />
     <MESSAGE value="Refactor. Fixed interaction between users" />
     <MESSAGE value="Generic interfaces. Refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Generic interfaces. Refactor" />
+    <MESSAGE value="Generic interfaces. Most necessary doc comments" />
+    <MESSAGE value="README.MD update. Updated build.gradle for run app from gradle command" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.MD update. Updated build.gradle for run app from gradle command" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

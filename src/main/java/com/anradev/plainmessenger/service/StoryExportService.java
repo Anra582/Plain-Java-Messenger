@@ -1,8 +1,6 @@
 package com.anradev.plainmessenger.service;
 
 import com.anradev.plainmessenger.model.Message;
-import com.anradev.plainmessenger.repository.MessageRepository;
-import com.anradev.plainmessenger.util.RepoKeyBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,22 +12,21 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- * StoryExportService provides exporting the chatting history between two users in JSON-format
+ * StoryExportService provides exporting the chatting history between two users in JSON-format.
  * @author Aleksei Zhvakin
  */
 public class StoryExportService {
 
-    private final MessageRepository messageRepository;
+    private final MessageService messageService;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public StoryExportService(MessageRepository messageRepository) {
-        this.messageRepository = messageRepository;
+    public StoryExportService(MessageService messageService) {
+        this.messageService = messageService;
     }
 
     public boolean exportJsonToFile(String sender, String recipient, String fileName) {
-        String key = RepoKeyBuilder.build(sender, recipient);
-        final List<Message> messages = messageRepository.findAllByKey(key);
+        final List<Message> messages = messageService.getAllHistory(sender, recipient);
         if(messages.isEmpty()) {
             return false;
         }
