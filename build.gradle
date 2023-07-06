@@ -5,6 +5,7 @@ plugins {
 
 group 'com.anradev.plainmessenger'
 version '1.0-SNAPSHOT'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
